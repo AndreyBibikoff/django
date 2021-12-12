@@ -20,8 +20,8 @@ from .views import index, contacts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', index, name='index'),
     path('products/', include('mainapp.urls')),
-    path('contacts/', contacts),
+    path('contacts/', contacts, name='contacts'),
 
 ]
