@@ -1,0 +1,86 @@
+[
+  {
+    "model": "mainapp.productcategory",
+    "pk": 2,
+    "fields": {
+      "category_name": "Офис",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 3,
+    "fields": {
+      "category_name": "Дом",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 4,
+    "fields": {
+      "category_name": "Модерн",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 5,
+    "fields": {
+      "category_name": "Классика",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 1,
+    "fields": {
+      "category": 2,
+      "name": "Стул",
+      "image": "products_image/product-4.jpg",
+      "short_descript": "Просто стул",
+      "description": "Просто крутой стул",
+      "price": "10000.00",
+      "quantity": 5
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 2,
+    "fields": {
+      "category": 3,
+      "name": "Диван",
+      "image": "products_image/product-3-sm.jpg",
+      "short_descript": "Крутой диван",
+      "description": "Очень крутой диван",
+      "price": "50000.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 3,
+    "fields": {
+      "category": 4,
+      "name": "Часы",
+      "image": "products_image/product-4-sm.jpg",
+      "short_descript": "Крутые часы",
+      "description": "Ну очень крутые часы",
+      "price": "5000.00",
+      "quantity": 5
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 5,
+    "fields": {
+      "category": 4,
+      "name": "Лампа",
+      "image": "products_image/product-1.jpg",
+      "short_descript": "Крутая лампа",
+      "description": "Очень крутая лампа",
+      "price": "1000.00",
+      "quantity": 50
+    }
+  }
+]
