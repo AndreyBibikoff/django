@@ -4,16 +4,16 @@
 		<div class="hero-white">
 			<div class="header clearfix">
 							{% include 'geekshop/inc/top_menu.html' %}
-                <a href="#" class="basket"></a>
+
 			</div>
 		</div>
 
 		<div class="details">
 			<div class="links clearfix">
 				<ul class="links-menu">
-					<li><a href="#" class="active">ВСЕ</a></li>
+					<li><a href="{% url 'products:category' 0 %}" class="{%if request.resolver_match.kwargs.pk == 0	%} active {%endif%}">ВСЕ</a></li>
 					{% for menu in products_menu %}
-					<li><a href="#" class="active">{{menu.category_name}}</a></li>
+					<li><a href="{% url 'products:category' menu.pk %}" class="{% if request.resolver_match.kwargs.pk|add:'0' == menu.pk %} active {% endif %}">{{menu.category_name}}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -59,20 +59,46 @@
 					</div>
 				</div>
 			</div>
+        <div class="related">
+			<div class="products_list">
+                  <div class="title clearfix">
+                      {% if category %}
+                        <h2>
+                            Категория: "{{ category.category_name|title }}"
+                        </h2>
+                      {% endif %}
+                  </div>
 
+                <div class="related-products clearfix">
+
+                    {% for product in products %}
+                      <div class="block">
+                        <a href="{% url 'basket:add' pk=product.pk %}">
+                          <img src="/media/{{ product.image }}" alt="product">
+                          <div class="text">
+                            <img src="{% static 'geekshop/img/basket.png' %}" alt="hover">
+                              <h4>{{ product.name }}</h4>
+                              <p>{{ product.description }}</p>
+                          </div>
+                        </a>
+                      </div>
+                    {% endfor %}
+
+                  </div>
+            </div>
 			<div class="related">
 				<div class="title clearfix">
 					<h2>Похожие продукты</h2>
-					<a class="explore" href="#">показать все <img src="{% static '/geekshop/img/arrow.png' %}" alt=""></a>
+					<a class="explore" href="#">показать все <img src="/media/{{ product.image }}" alt=""></a>
 				</div>
 				<div class="related-products clearfix">
-					{% for product in related_products %}
+					{% for product in products %}
 					<div class="block">
-						<a href="#"><img src="{{product.img_link}}" alt="">
+						<a href="{% url 'basket:add' pk=product.pk %}"><img src="/media/{{ product.image }}" alt="">
 							<div class="text">
-								<img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
+								<img src="{% static '/geekshop/img/basket.png' %}" alt="img">
 								<h4>{{product.name|title}}</h4>
-								<p>Не оторваться. </p>
+								<p>{{product.description}}</p>
 							</div>
 						</a>
 					</div>
