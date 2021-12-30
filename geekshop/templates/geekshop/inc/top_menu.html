@@ -19,8 +19,15 @@
         {% if basket %} {{ basket.length }} {% endif %}
     </li>
     <li>
-        <a href="#" class="basket bask1">
-                    <div>{% if basket %} {{ basket|length }} {% endif %}</div>
+        <a href="{% url 'basket:index' %}" class="basket bask1">
+                    <div>
+                        {% if basket %}
+                        {{ basket.0.total_quantity }}
+                        ({{ basket.0.total_cost|floatformat:0 }} &#8381;)
+                        {% else %}
+                        (0) &#8381;
+                        {% endif %}
+                    </div>
                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                 </a>
     </li>
