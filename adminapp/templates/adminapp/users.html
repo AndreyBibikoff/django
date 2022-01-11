@@ -65,10 +65,22 @@
                                     </a>
                                 </td>
                             </tr>
+
                         {% endfor %}
                         </tbody>
                     </table>
+                <div class="paginator">
+
+                      <span class="current">
+                        страница {{ objects.number }} из
+                        {{ objects.paginator.num_pages }}
+                      </span>
+{#                     <a href="{% url 'users:read' products.next_page_number %}">#}
+{#                          >#}
+{#                        </a>#}
+                    </div>
                 </div>
+
             </div>
             <div class="card-footer">
                 <a href="{% url 'admin_staff:user_create' %}">
