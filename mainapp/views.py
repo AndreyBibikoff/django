@@ -40,7 +40,6 @@ def products(request, pk=None):
             'products_menu': products_menu,
             'products': products,
             'category': category,
-            'basket': get_basket(request.user),
             'hot_product': hot_product,
             'same_product': same_product,
         }
@@ -52,17 +51,9 @@ def products(request, pk=None):
         'products_menu': products_menu,
         'hot_product': hot_product,
         'same_product': same_product,
-        'basket': get_basket(request.user),
     }
 
     return render(request, 'mainapp/products.html', context=context)
-
-
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    else:
-        return []
 
 
 def product(request, pk):
@@ -72,7 +63,6 @@ def product(request, pk):
         'title': title,
         'links_menu': ProductCategory.objects.all(),
         'product': get_object_or_404(Product, pk=pk),
-        'basket': get_basket(request.user),
     }
 
     return render(request, 'mainapp/product.html', content)
