@@ -1,0 +1,33 @@
+
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="h2 text-center head ">
+                Редактирование профиля - {{user.username}}
+            </div>
+    <div class="user_avatar">
+    {% if user.social_login %}
+        <img src="{{ user.avatar|default:"avatar.png" }}" class="w-25">
+        {% else %}
+        <img src="/media/{{ user.avatar|default:"avatar.png" }}" class="w-25">
+    {% endif %}
+    </div>
+    <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        {{ profile_edit_form.as_p }}
+
+        <br>
+        <input class="form-control btn btn-outline-success" type="submit" value="сохранить">
+    </form>
+<div class="p-3">
+    <button class="form-control btn btn-link btn-sm">
+        <a href="{% url 'index' %}" class="">
+            Вернуться на главную
+        </a>
+    </button>
+</div>
+
+{% endblock %}
