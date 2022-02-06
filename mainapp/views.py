@@ -2,8 +2,7 @@ import random
 
 from django.shortcuts import render, get_object_or_404
 
-# Create your views here./
-from basketapp.models import Basket
+
 from mainapp.models import ProductCategory, Product
 
 
@@ -19,13 +18,14 @@ def get_same_products(hot_product):
     return same_products
 
 
-hot_product = get_hot_product()
-same_product = get_same_products(hot_product)
+
 
 
 def products(request, pk=None):
     title = 'geekshop - каталог'
     products_menu = ProductCategory.objects.all()
+    hot_product = get_hot_product()
+    same_product = get_same_products(hot_product)
 
     if pk is not None:
         if pk == 0:
