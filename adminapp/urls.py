@@ -2,14 +2,15 @@ from django.contrib import admin
 from django.urls import path, include
 
 import adminapp.views as adminapp
+from django.views.decorators.cache import cache_page
 
 app_name = 'authapp'
 
 urlpatterns = [
 
     path('users/create/', adminapp.UserCreateView.as_view(), name='user_create'),
-    path('users/read/', adminapp.UsersListView.as_view(), name='users'),
-#    path('users/read/<int:page>/', adminapp.users, name='page'),
+    path('users/read/', cache_page(3600)(adminapp.UsersListView.as_view()), name='users'),
+    #    path('users/read/<int:page>/', adminapp.users, name='page'),
     path('users/update/<int:pk>/', adminapp.UserEditView.as_view(), name='user_update'),
     path('users/delete/<int:pk>/', adminapp.UserDeleteView.as_view(), name='user_delete'),
 
